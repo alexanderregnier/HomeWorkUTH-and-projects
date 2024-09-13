@@ -1,0 +1,191 @@
+﻿2.0.5
+- Removed support for VS2010.
+- Added support for VS2017.
+- Modified code to validate the user provided data types in the Table Designer Editor which provides a more user-friendly
+  experience. (Bug #13477821 - VISUAL STUDIO TABLE DESIGNER SHOWS BIT TYPE AS BIT(10))
+- Fixed a problem which caused the wrong schema to be exported whenever unselecting schemas from the Schema list.
+- Fixed bug which caused the currently selected schema's db objects to become unselected in the Tree view after unselecting a
+  different schema from the Schema list. (Bug #23666666 - EXPORT TOOL IS EXPORTING THE WRONG SCHEMA)
+- The value of multiple properties would be shown as blank in the Advanced Properties dialog whenever creating/editing a
+  connection through the Server Explorer. The resulting connection string would contain the correct values, however it was
+  misleading not to see them in the Advanced Properties dialog.
+- Enabled the SQL Editor to display execution results information in the "MySQL Output" pane.
+- Fixed a problem which prevented SQL, JavaScript and Python scripts from detecting keyboard input for keys such as Enter,
+  Backspace, Arrows, etc. This would only happen after saving the script for the first time.
+  (Bug #24751945 - SCRIPT CAN'T GET EDITED AFTER SAVING IT)
+- Fixed a problem with the Field Types view which failed to show any fields whenever the executed statement contained table
+  names with a format of "<database_name>.<table_name>" or field names with a format of
+  "<database_name>.<table_name>.<field_name>".
+  (MySQL Bug #82882, Bug #24601948 - FIELD TYPES NOT WORKING FOR QUERIES WHERE SCHEMA IS SPECIFIED)
+- Fixed a problem with the Python Scripts feature in which the execution failed if the line termination sequences included LF
+  instead of CRLF. This scenario would occur when copying code from other editors into the Visual Studio editor.
+  (MySQL Bug #83854, Bug #25107595 - PYTHON SCRIPT NOT GENERATING OUTPUT IN BATCH MODE)
+
+
+2.0.4
+- Enhanced the logic that migrates stored MySQL connections to the MySQL Workbench connections.xml file. In previous versions
+  the migration was offered and if not done at that moment, the dialog to migrate was shown every time the "MySQL Connections
+  Manager" dialog was shown, but there was no way to choose to remain storing MySQL connections in the MySQL for Visual Studio
+  configuration folder instead of merging them with the Workbench ones. Now the connections migration dialog offers a way to
+  postpone the migration 1 hour, 1 day, 1 week, 1 month or indefinitely. If the migration is postponed the dialog is shown again
+  after that time elapses, although if it is postponed indefinitely an option was added to the "MySQL Connections Manager"
+  dialog that permits the migration of connections to be done manually, as long as MySQL Workbench is installed.
+- Fixed a problem when a new MySQL script editor for SQL is initialized through the creation of a new SQL script file, the
+  plugin tried to retrieve some information from a non-existent connection.
+  (Bug #23619311 - ERROR GENERATED WHEN MYSQL SCRIPT IS CREATED)
+- Fixed code that enables/disables the context menu options for creating a new MySQL Script file by right-clicking a MySQL
+  connection in the Server Explorer, depending on the connection status and on the MySQL Server version supporting the MySQL
+  X Protocol. (MySQL Bug #82205, Bug #24064816 - ERROR WHEN SELECTING NEW MYSQL SCRIPT CONTEXT-MENU OPTION FROM A CLOSED CONN)
+- Fixed the hardcoding of MySQLForExcel in the custom settings provider so its main XML element is named after the Application
+  Name ("MySQLForVisualStudio"). Added indentation to inner elements in the configuration file.
+  (MySQL Bug #82221, Bug #24291264 - SETTINGS FILE MAIN XML ELEMENT CALLED MYSQLFOREXCEL)
+- Added a validation to check if the Server version of an unnamed/temporary connection, created within a MySQL Script editor,
+  supports the X Protocol; since JavaScript and Python scripts only work using the X Protocol.
+  (MySQL Bug #82219, Bug #24290570 - PYTHON AND JS SCRIPTS NOT VALIDATING X PROTOCOL SUPPORT USING MANUAL CONNECTIONS)
+- Added support for "Optimizer Hints", creating Parser unit tests to validate optimizer hints queries and validating such queries
+  can be executed in MySQL query editor.
+- When the MySQL Script Editor window is opened (either by selecting SQL, JavaScript or Python from the New MySQL Script menu),
+  the Results area was visible showing a big gray area in the editor, despite having nothing to display. Now, this area is hidden
+  until results are ready to display, which happens after clicking Run.
+- Dragging a and dropping a table from Visual Studio's Server Explorer to a project would fail with the following error: "Some
+  updating commands could not be generated automatically. The database returned the following error: You have a usable connection
+  already". After clicking OK, Visual Studio would emit the following error "Mouse drag operation failed. Could not retrieve
+  schema information from table or view". To solve this issue, MySql.Data was updated to version 6.9.9.
+- From the Query Designer, selecting Verify SQL Syntax would always display "Not supported by the provider" instead of verifying
+  the SQL syntax.
+- Enhanced the "Connect to MySQL" dialog shown when establishing a new connection within MySQL script editor windows, to have a
+  look and feel consistent with other MySQL for Windows products. The dialog now offers the ability to add the newly created
+  connection to the Server Explorer in Visual Studio. The problem with the Advanced button was also fixed.
+  (Bug #22114315 - ADVANCED BUTTON IN MYSQL SCRIPT -> CONNECT TO MYSQL CONFIGURATION HIDE BUTTONS)
+- Added the ability to fast-switch connections within any of the MySQL script editor windows (SQL, JavaScript or Python), a new
+  drop-down is available next to the "Connect to MySQL..." button (first button in the editor window toolbar) that shows all
+  Server Explorer connections for the MySQL data provider.
+- Changed the way queries are executed in the SQL script editor, so that a problem caused by non-unique data in MySQL Document
+  Store tables is not present anymore. (MySQL Bug #82589, Bug #24462707 - SQL EDITOR - ERROR ON SELECT WITH DOC STORE TABLE)
+- Added to the SQL editor the ability to check the syntax of a script when it is executed. Before the script's statements are
+  actually sent to the server the syntax check is done; if errors are found the script is not actually executed and the errors
+  are displayed in Visual Studio's Output pane.
+- Fixed the ANTLR grammar for the SHOW statement to allow for SHOW SCHEMAS in the same fashion as SHOW DATABASES works.
+  (Bug #24622881 - COMMAND: SHOW SCHEMAS DOES NOTHING ON SQL MODE)
+- Improved the way Result objects from the X Protocol are processed to make the processing faster; and if a result is not a
+  BaseResult object and is a collection returned as plain text, process it so it is displayed as a collection instead of an error
+  or information text message. (Bug #22983803 - JS OUTPUT RESULTS, SHOWS "UNDEFINED" TEXT WHEN COMMAND HAS NOTHING TO DISPLAY)
+- Fixed the way the MySQL data provider falls back to the provider shipped with MySQL for Visual Studio when Connector/NET is
+  not installed, or the MySQL data provider is not found in the Global Assembly Cache.
+  (Bug #23642010 - [SERVER EXPLORER] RIGHT CLICK ANY TABLE AND SELECT DESIGN, IT RAISE AN ERROR)
+
+
+2.0.3
+- Fixed the error being thrown when executing JavaScript queries on MySQL X Protocol connections that involve the use of the
+  "mysqlx" module, because the module "mysqlx" for JavaScript cannot be imported. (MySql Bug #81052, Oracle bug #23091964).
+- Improved the handling of errors, warnings and execution stats output of MySQL X DevAPI statements, all messages are properly
+  handled and displayed after batch or console execution.
+- Added a new “MySQL Output” pane to display MySQL X DevAPI execution results information, like execution success and times.
+- Added "Console Mode" support for JavaScript and Python script editors.  In this mode query execution mimics the way the
+  MySQL Shell works, meaning MySQL X DevAPI statements are executed after hitting <ENTER> and results are displayed inline.
+- Added a new “MySQL Connections Manager” that enables the sharing of stored MySQL connections with MySQL Workbench if
+  It’s installed. MySQL connections are displayed in a friendly way and can be created and edited from within the 
+  “MySQL Connections Manager” dialog, and these can be imported to Visual Studio’s Server Explorer to be used in Visual Studio.
+- Added SSL support for MySQL connections that use the MySQL X Protocol. SSL support works with PEM files, so SSL connections
+  need to be created through the “MySQL Connections Manager” or MySQL Workbench.  Please refer to the official documentation
+  for more information.
+- Added support for new MySQL X DevAPI functions: parseUri(), isOpen().
+
+
+2.0.2
+- Fixed the MySQL X Protocol support for all Visual Studio versions supported by MySQL for Visual Studio (2010 and newer).
+- Added support for Visual Studio 2015 with .NET Framework 4.6.
+- Updated the MySQL parser's grammar to include keywords introduced in MySQL 5.7.
+
+
+2.0.1
+- Added a new Editor to handle MySQL Phyton script files.
+- Added a new option to create new MySQL Phyton script directly from Server Explorer.
+
+
+2.0.0
+- Fixed problem with font colors that made them difficult to read when using the Visual Studio's Dark theme.
+- Added a new option to create new MySQL scripts directly from Server Explorer.
+- Added a new Editor to handle Javascript files.
+- Added a new option to create new MyJs scripts directly from Server Explorer.
+- Move info messages from "Messages" Tab in the current Query Editor to the VS output Window.
+- Added a Workbench-like vertical menu to the current Query Editor which will be shown with script results to switch between 
+  the following views: Result Set, Field Types, Query Stats and Execution Plan.
+- Added new information panes to the current Query Editor that are going to be displayed in the result set area: 
+  Field Types, Query Stats and Execution Plan.
+- Added the support to handle multiple result sets in the current Query Editor.
+- Fix controls color to match default provided VS Themes (Dark, Blue and Light).
+- Support added for MySQL X Protocol, included in MySQL Server 5.7.9.
+
+
+1.2.6
+
+- Fix a bug which prevent users to create a non MySql connection in the Server Explorer pane in VisualStudio 
+  after the user create a MySql Connection checking the option "Always use this selection" when selecting 
+  the Data Source and Data Provider (MySql Bug #77441, Oracle bug #22122881)
+- Fixed the bug that was preventing to "Generate Database from Model" in an existing "edmx" model,
+  caused by an invalid path to the Connector/NET assembly in the MySQL T4 templates files 
+  (MySql Bug #74388, Oracle bug #20234532).
+- Fixed the error being thrown when working with an empty "edmx" model and attempt to generate a database
+  from model, due an invalid data in the MySQL "ttinclude" file (Oracle bug #18181649).
+- Create a powershell scripts to handle the uninstall/upgrade issue present in any M4VS plugin versions 
+  prior to 1.2.5, when having installed VS2012, or VS2013 or VS2015 and the M4VS plugin < 1.2.5, and then
+  uninstall VS first, so when trying to uninstall the M4VS the uninstall/upgrade process was being rolled-back.
+- Fixed the M4VS plugin version shown in the "Extensions and Updates" Visual Studio menu to reflect the latest
+  released version (Oracle bug #22114385).
+
+
+1.2.5
+- Fixed the bug where the "MySQL Workbench" and "MySQL Utilities" buttons were disabled (Oracle Bug #21495692).
+- Fixed the bug with the M4VS installer where having any plugin version installed on any Visual Studio
+  version, and then uninstall Visual Studio first, the M4VS plugin couldn't be uninstalled or upgraded
+  (MySQL Bug #71226, Oracle Bug #21953055).
+- Remove the "Project Templates" option from the plugin toolbar button and from the "File -> New -> Project" menu, 
+  in order to add the "Item Templates" feature with two options: MySQL MVC Item and MySQL Windows Forms Item, 
+  available as a context menu for existing projects, which will add a new windows forms or MVC controllers/views 
+  connected to MySQL. There is a known issue with item templates not working correctly with MySQL Server 5.7.x,
+  avoiding the user to create the entity framework model.
+- Added the "Entity Framework" option to the MySQL Website Configuration Dialog, for web projects, so Entity Framework
+  version 5 or 6 can be used with a MySQL database provider, automatically adding the configuration/references needed
+  to the web.config file and the project itself.
+- Fixed the bug where the dataset designer wizard was not showing the stored procedure parameters when creating a 
+  "TableAdapter" using existing stored procedures for the "Select" command. Also, fixed the bug where the stored procedure
+  command having an "error" command was avoiding the dataset to be created (MySQL Bug #74195, Oracle Bug #20233133).
+  
+
+1.2.4
+- Removed support for VS2008.
+- Added support for VS2015 so the plugin can be installed properly (MySQL Bug #77708, Oracle Bug #21438524).
+- Fix for MySQL parser does not support new syntax in 'explain' for grammar 5.7 (Oracle Bug #19431740).
+
+
+1.2.3
+- Add the support to handle the Simple Membership Web Provider configuration in the Web Configuration Tool.
+- Fix for web configuration tool doesn't use the web.config from the startup project by default when using the 
+  Web Configuration Tool (Oracle Bug #19166855).
+
+
+1.2.2
+- Added support for Multiple tables application generation in MySQL Windows Forms Wizard.
+
+
+1.2.1
+- Added implementation of Create New MySQL Project dialog and new Create New MySQL project in MySQL Toolbar.
+- Added VB.NET support for Windows Forms Project Wizard.
+- Added Master Detail support for Windows Forms Project Wizard.
+- Added DataGrid support for Windows Forms Project Wizard.
+- Added Entity Framework v5 & v6 for Windows Forms Project Wizard.
+- Added implementation of MVC pattern of selected model tables for MVC Project.
+- Added action links of generated views in home page for MVC project.
+- Fix for Connect to database dialog not updated properly.
+
+
+1.2.0
+- Added Implementation of IWizard to create MySQL MVC project.
+- Added implementation of Windows Forms Template project.
+- Fix for Project Templates Wizards shows error Cannot load MySql.Visual studio assembly.
+- Added changes for web configuration tool for Site Map provider.
+- Added changes for web configuration tool for Personalization Map provider.
+
+
+
