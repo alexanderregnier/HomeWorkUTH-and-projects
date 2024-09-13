@@ -1,0 +1,55 @@
+/* * {
+    background: #00ffaa;
+}
+
+h1{
+    background: #2d35c0;
+}
+
+p{
+    background: #d83d3d;
+}
+
+ul{
+    background: #dc2495;
+}
+
+li{
+    background: #40ef21;
+}
+
+#title{
+    background: #00e5ff;
+}
+
+.title{
+    background: #a11c1c;
+}
+
+.texto{
+    background: #ae00ff;
+} */
+
+[href]{
+    background: #dbff25;
+}
+
+[href="https://google.com"]{
+    background: #00ff48;
+}
+
+[href^="color"]{
+    background: #58567b;
+}
+
+[href*="modo"]{
+    background: #b3349c;
+}
+
+[href$="random"]{
+    background: #507dac;
+}
+
+[lang |="en"]{
+    background: #054b67;
+}
