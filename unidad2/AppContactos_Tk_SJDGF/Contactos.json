@@ -1,0 +1,32 @@
+[
+    {
+        "nombre" : "José Padilla", 
+        "teléfono" : "6621234567", 
+        "email" : "jopadu@gmail.com"
+    }, 
+    {
+        "nombre" : "Irma Barens", 
+        "teléfono" : "6621885522", 
+        "email" : "irmabarens@gmail.com"
+    }, 
+    {
+        "nombre" : "Diego Padilla", 
+        "teléfono" : "6621555666", 
+        "email" : "diegopad@gmail.com"
+    }, 
+    {
+        "nombre" : "Tony Stark", 
+        "teléfono" : "5098817766", 
+        "email" : "tony@starkindustries.com"
+    }, 
+    {
+        "nombre" : "Sadrach Juan Diego Garcia Flores", 
+        "teléfono" : "6623514542", 
+        "email" : "Jdiego0805@mgmail.com"
+    }, 
+    {
+        "nombre" : "Adrian Eduardo", 
+        "teléfono" : "66236549876", 
+        "email" : "Pepe55@mgmail.com"
+    }
+]

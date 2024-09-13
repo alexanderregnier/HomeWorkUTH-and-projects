@@ -1,0 +1,39 @@
+[
+    {
+        "nombre": "José", 
+        "apellido": "Padilla",
+        "edad": 44,
+        "precio": 5400,
+        "pagado": true,
+        "asiento": {
+            "numero": 19,
+            "letra": "B",
+            "cargador": false
+        },
+        "historial": [
+            {
+                "salida": "Hermosillo",
+                "destino": "Monterrey",
+                "fecha": "05/01/2022"
+            },
+            {
+                "salida": "Monterrey",
+                "destino": "CDMX",
+                "fecha": "08/01/2022"
+            }
+        ]
+    },
+    {
+        "nombre": "Irma", 
+        "apellido": "Barens",
+        "edad": 42,
+        "pagado": true,
+        "precio": 3700,
+        "asiento": {
+            "numero": 32,
+            "letra": "C",
+            "cargador": true
+        },
+        "historial": []
+    }
+]
