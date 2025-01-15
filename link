@@ -1,7 +1,7 @@
 import os
 os.system("CLS")
 //Estaba aburrido ok?, lo hice en una clase de padilla un saludo a padilla de la uth
-//si me mame pero me quedaron bien chingones un totodile y un link iba a hacer mas pero lo olvide la verdad
+//si me mame pero me quedaron bien chingones un totodile y un link
 
 print("                                  ########################                                   ")
 print("                                  ########################                                   ")
