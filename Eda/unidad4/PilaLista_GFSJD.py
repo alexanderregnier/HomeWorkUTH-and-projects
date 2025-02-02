@@ -7,14 +7,14 @@
 
 from stack_and_queue import *
 from MisFunciones_2024 import *
-import random as rnd
+import secrets
 
 Cls()
 pila = Stack()
 lista = []
 
 for x in range(10):
-    lista.append(rnd.randint(1, 100))
+    lista.append(secrets.SystemRandom().randint(1, 100))
 
 print("Lista original:")
 print(lista)

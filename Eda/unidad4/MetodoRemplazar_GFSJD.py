@@ -9,12 +9,12 @@
 
 from MisFunciones_2024 import *
 from stack_and_queue import *
-import random as rnd
+import secrets
 
 Cls()
 pila = Stack()
 for e in range(20):
-    pila.push(rnd.randint(1,100))
+    pila.push(secrets.SystemRandom().randint(1,100))
 
 while True:
     print(f'Pila: {pila.all_items()}')

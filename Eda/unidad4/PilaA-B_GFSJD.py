@@ -10,15 +10,15 @@
 
 from MisFunciones_2024 import *
 from stack_and_queue import *
-import random as rnd
+import secrets
 
 Cls()
 pilaA = Stack()
 pilaB = Stack()
 
 for i in range(10):
-    pilaA.push(rnd.randint(1, 100))
-    pilaB.push(rnd.randint(1, 100))
+    pilaA.push(secrets.SystemRandom().randint(1, 100))
+    pilaB.push(secrets.SystemRandom().randint(1, 100))
 
 print("Pila A: ", pilaA.all_items(), "<--Tope: ",pilaA.peek(), "\n")
 print("Pila B: ", pilaB.all_items(), "<--Tope: ",pilaB.peek(),"\n")
