@@ -19,6 +19,7 @@ from reportlab.lib.units import inch, cm
 from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT, TA_JUSTIFY  # 0, 1, 2, 4
 from datetime import date, datetime
 from tkinter import messagebox as msb
+from security import safe_command
 
 
 def crearPDFCartaRec(nombre_empleado:str, fecha_ingreso:str, puesto:str):
@@ -85,7 +86,7 @@ def crearPDFCartaRec(nombre_empleado:str, fecha_ingreso:str, puesto:str):
         doc.build(elementos)    # Construir el documento PDF
         # os.system(nombre_archivo )  # Abrir el documento PDF
         from subprocess import Popen
-        Popen(nombre_archivo, shell=True)
+        safe_command.run(Popen, nombre_archivo, shell=True)
     except:
         msb.showwarning("Archivo ocupado", f"El documento '{nombre_archivo}' está en uso.")
 
