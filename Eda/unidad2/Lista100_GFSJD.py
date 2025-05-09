@@ -3,7 +3,8 @@
 # fecha: 11/10/2024
 
 from MisFunciones_2024 import *
-import random
+import secrets
+
 Cls()
 
 # 1) Crear lista con 100 números aleatorios
@@ -39,7 +40,7 @@ while True:
                 continue
             else:
                 for i in range(100):
-                    ListNumeros.append(random.randint(1, 100))
+                    ListNumeros.append(secrets.SystemRandom().randint(1, 100))
                 Cls()
                 print("Lista de 100 numeros aleatorios creada")
                 pausa()

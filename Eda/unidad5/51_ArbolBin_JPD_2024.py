@@ -3,10 +3,10 @@ Autor: José Padilla Duarte
 Grupo: TIDS4-_
 Fecha de última modificación: 25-noviembre-2024
 '''
-from random import randint
 from MisFunciones_2024 import *
 from treenode import TreeNode
 import time
+import secrets
 
 a1 = TreeNode()     # a1 es la raíz del árbol
 
@@ -79,7 +79,7 @@ while True:
         case 6:
             datos = []
             for x in range(5):
-                e = randint(1,100)
+                e = secrets.SystemRandom().randint(1,100)
                 datos.append(e)
                 a1.insert(e)
             print("Se agregaron:", datos)
