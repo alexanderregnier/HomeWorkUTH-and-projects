@@ -2,8 +2,8 @@
 # Los números los podrá introducir el usuario mediante el teclado o bien se pueden generar aleatorios de manera automática.
 
 import numpy as np
-import random as rd
 from MisFunciones_2024 import *
+import secrets
 
 tamaño = 20
 maximo = 100
@@ -33,7 +33,7 @@ while True:
     elif opcion == 2:
         numeros = set()
         while len(numeros) < 20:
-            numero = rd.randint(1, 100)
+            numero = secrets.SystemRandom().randint(1, 100)
             numeros.add(numero)
         
         for i, numero in enumerate(numeros):

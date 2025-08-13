@@ -7,8 +7,8 @@
 
 from MisFunciones_2024 import *
 from stack_and_queue import Queue
-import random as rnd
 import numpy as np
+import secrets
 
 class Queue(Queue):
     def promedio(self, items):
@@ -22,7 +22,7 @@ cola = Queue()
 # cola2 = Queue()
 for i in range(20):
     while True:
-        num = rnd.randint(1,100)
+        num = secrets.SystemRandom().randint(1,100)
         if num not in cola.all_items():
             cola.enqueue(num)
             break
