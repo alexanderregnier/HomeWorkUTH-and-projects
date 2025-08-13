@@ -7,10 +7,10 @@
 
 import numpy as np
 from MisFunciones_2024 import *
-import random as Ra
+import secrets
 
 Cls()
-n = Ra.randint(1,100)
+n = secrets.SystemRandom().randint(1,100)
 
 arreglo = np.random.randint(0, 100, n)
 

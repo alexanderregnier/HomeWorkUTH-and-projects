@@ -4,7 +4,7 @@
 
 from MisFunciones_2024 import *
 from stack_and_queue import Queue
-import random as rnd
+import secrets
 
 abd = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -13,7 +13,7 @@ fecuencia = {}
 
 Cls()
 for i in range(25):
-    num = rnd.choice(abd)
+    num = secrets.choice(abd)
     cola.enqueue(num)
 
 print(f"Alfabeto disponible: {abd}")

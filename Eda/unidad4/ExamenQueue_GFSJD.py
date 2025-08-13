@@ -4,7 +4,7 @@
 
 from MisFunciones_2024 import *
 from stack_and_queue import *
-import random as rn
+import secrets
 
 Cls()
 queue1 = Queue()
@@ -12,13 +12,13 @@ queue2 = Queue()
 queueRepit = Queue()
 
 for i in range(20):
-    queue1.enqueue(rn.randint(1,100))
+    queue1.enqueue(secrets.SystemRandom().randint(1,100))
 
 print("Cola1:")
 print(queue1.all_items())
 
 for i in range(20):
-    queue2.enqueue(rn.randint(1,100))
+    queue2.enqueue(secrets.SystemRandom().randint(1,100))
 
 print("\nCola2:")
 print(queue2.all_items())

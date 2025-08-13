@@ -13,7 +13,7 @@
 
 import numpy as np
 from MisFunciones_2024 import *
-import random as rn
+import secrets
 
 Cls()
 
@@ -27,7 +27,7 @@ for f in range(NF):
     for c in range(NC):
         # Matriz[f][c] = leer_int(f"Teclee un numero para [{f}][{c}]: ")
         # Matriz[f][c] = np.random.randint(1,100)
-        Matriz[f][c] = rn.randint(1,100)
+        Matriz[f][c] = secrets.SystemRandom().randint(1,100)
 
 for f in range(NF):
     suma = 0
